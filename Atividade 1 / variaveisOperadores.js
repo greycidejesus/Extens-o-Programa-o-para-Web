@@ -1,30 +1,18 @@
-function verificarNumeroPrimo(n) {
-    if (n <= 1) {
-        return false;
-    }
-    if (n <= 3) {
-        return true;
-    }
-    if (n % 2 === 0 || n % 3 === 0) {
-        return false;
-    }
-    let i = 5;
-    while (i * i <= n) {
-        if (n % i === 0 || n % (i + 2) === 0) {
-            return false;
-        }
-        i += 6;
-    }
-    return true;
-}
+let num_A = 5;
+let num_B = 3;
 
-console.log(verificarNumeroPrimo(0));  
-console.log(verificarNumeroPrimo(1));
-console.log(verificarNumeroPrimo(2));
-console.log(verificarNumeroPrimo(3));
-console.log(verificarNumeroPrimo(7));
-console.log(verificarNumeroPrimo(83));
-console.log(verificarNumeroPrimo(100));
-console.log(verificarNumeroPrimo(991));
-console.log(verificarNumeroPrimo(104729));
-console.log(verificarNumeroPrimo(14348907)); 
+// Adição
+let rAdicao = num_A + num_B;
+console.log(`Resultado da adição entre ${num_A} e ${num_B} é ${rAdicao}`);
+
+//Subtração
+let rSubtracao = num_A - num_B;
+console.log(`Resultado da subtração entre ${num_A} e ${num_B} é: ${rSubtracao}`);
+
+//Divisão
+let rDivisao = num_A / num_B;
+console.log(`Resultado da divisão entre ${num_A} e ${num_B} é: ${rDivisao}`);
+
+//Multiplicação
+let rMultiplicacao = num_A * num_B;
+console.log(`Resultado da multiplicação entre ${num_A} e ${num_B} é: ${rMultiplicacao}`);
