@@ -1,0 +1,81 @@
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@SpringBootApplication
+@RestController
+public class Application {
+
+    private Map<Integer, Produto> estoque = new HashMap<>();
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+    @PostMapping("/adicionar/{id}/{nome}/{qtd}")
+    public String adicionarProduto(@PathVariable int id, @PathVariable String nome, @PathVariable int qtd) {
+        if (estoque.containsKey(id)) {
+            Produto produto = estoque.get(id);
+            produto.setQuantidade(produto.getQuantidade() + qtd);
+        } else {
+            estoque.put(id, new Produto(nome, qtd));
+        }
+        return "Produto adicionado ao estoque.";
+    }
+
+    @GetMapping("/listar")
+    public Map<Integer, Produto> listarProdutos() {
+        return estoque;
+    }
+
+    @DeleteMapping("/remover/{id}")
+    public String removerProduto(@PathVariable int id) {
+        if (estoque.containsKey(id)) {
+            estoque.remove(id);
+            return "Produto removido do estoque.";
+        } else {
+            return "Produto não encontrado no estoque.";
+        }
+    }
+
+    @PutMapping("/editar/{id}/{qtd}")
+    public String editarQuantidade(@PathVariable int id, @PathVariable int qtd) {
+        if (estoque.containsKey(id)) {
+            Produto produto = estoque.get(id);
+            produto.setQuantidade(qtd);
+            return "Quantidade do produto atualizada.";
+        } else {
+            return "Produto não encontrado no estoque.";
+        }
+    }
+
+    static class Produto {
+        private String nome;
+        private int quantidade;
+
+        public Produto(String nome, int quantidade) {
+            this.nome = nome;
+            this.quantidade = quantidade;
+        }
+
+        // Getters and setters
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public int getQuantidade() {
+            return quantidade;
+        }
+
+        public void setQuantidade(int quantidade) {
+            this.quantidade = quantidade;
+        }
+    }
+}
