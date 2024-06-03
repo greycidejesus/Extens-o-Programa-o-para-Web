@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const calculadoraController = require('../controller/calculadoraController');
+const calculadoraControlador = require('../controlador/calculadoraControlador');
 
 router.get('/', (req, res) => {
   res.sendFile('index.html', { root: 'src/views' });
 });
 
-router.post('/calcular', calculadoraController.calcular);
+router.post('/calcular', calculadoraControlador.calcular);
 
 module.exports = router;
+
