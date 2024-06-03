@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const calculadoraRoutes = require('./src/routes/calculadoraRoutes');
+const calculadoraRotas = require('./src/rotas/calculadoraRotas');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', calculadoraRoutes);
+app.use('/', calculadoraRotas);
 
 app.listen(port, () => {
-  console.log(`App running at http://localhost:${port}`);
+  console.log(`Aplicação rodando em http://localhost:${port}`);
 });
